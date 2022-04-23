@@ -55,6 +55,7 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
+            this.listBox1.HorizontalScrollbar = true;
             this.listBox1.Location = new System.Drawing.Point(16, 169);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(229, 420);
@@ -77,6 +78,7 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox1.Size = new System.Drawing.Size(560, 384);
             this.textBox1.TabIndex = 4;
             // 
@@ -126,6 +128,7 @@
             this.textBoxDopQ.Location = new System.Drawing.Point(13, 3);
             this.textBoxDopQ.Multiline = true;
             this.textBoxDopQ.Name = "textBoxDopQ";
+            this.textBoxDopQ.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxDopQ.Size = new System.Drawing.Size(798, 54);
             this.textBoxDopQ.TabIndex = 11;
             // 
