@@ -15,9 +15,11 @@ namespace lab5
 {
     public partial class DopQuest : Form
     {
+        public bool HaveText { get; set; }
         public DopQuest()
         {
             InitializeComponent();
+            HaveText = false;
         }
         public static double Convertor(string inp)
         {
@@ -25,7 +27,7 @@ namespace lab5
             inp = inp.Replace('.', ',');
             return double.Parse(inp, provider);
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonDopQ1_Click(object sender, EventArgs e)
         {
             string pattern = @"(?<nKG>\d.\d|\d+)\sкг\.\s(?<Product>[А-Яа-я]+)\W+(?<Money>\d+)\sруб.";
             Regex regex = new Regex(pattern);
@@ -41,57 +43,80 @@ namespace lab5
                     listBox1.Items.Add($"{Regex.Matches(text, pattern)[i].Groups["Product"]} - {money / kg} руб/кг");
                 }
             }
-
-
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonDopQ2_Click(object sender, EventArgs e)
         {
-            string pattern = @"(http:\/\/|https:\/\/|ftp:\/\/)?(www\.)?([\w\-]+(?:\.[\w\-]+){1,4})";
-            Regex regex = new Regex(pattern);
-            string text = textBox1.Text;
-            for (int i = 0; i < Regex.Matches(text, pattern).Count; i++)
+            if ( HaveText == true )
             {
-                int index = Regex.Matches(text, pattern)[i].Index;
-                int lenght = Regex.Matches(text, pattern)[i].Length;
-                listBox2.Items.Add($"( {Regex.Matches(text, pattern)[i]} ) | Cмещение: {index}-{index+lenght} |");
+                string pattern = @"(http:\/\/|https:\/\/|ftp:\/\/)?(www\.)?([\w\-]+(?:\.[\w\-]+){1,4})";
+                Regex regex = new Regex(pattern);
+                string text = textBox1.Text;
+                SaveFileDialog save = new SaveFileDialog();
+                save.Filter = "Text documents (.txt)|*.txt";
 
+                if (save.ShowDialog() == DialogResult.OK)
+                {
+                    StreamWriter w = new StreamWriter(save.FileName);
+
+                    for (int i = 0; i < Regex.Matches(text, pattern).Count; i++)
+                    {
+                        int index = Regex.Matches(text, pattern)[i].Index;
+                        int lenght = Regex.Matches(text, pattern)[i].Length;
+                        w.WriteLine($"( {Regex.Matches(text, pattern)[i]} ) | Cмещение: {index}-{index + lenght} |");
+                    }
+
+                    w.Close();
+                }
             }
         }
-        public string filename { get; set; }
-        private void refresh (bool num)
+        private void buttonDopQ2End_Click(object sender, EventArgs e)
         {
-            if (num == true)
+            if (HaveText == true)
             {
-                OpenFileDialog op = new OpenFileDialog();
+                string pattern = @"(http:\/\/|https:\/\/|ftp:\/\/)?(www\.)?([\w\-]+(?:\.[\w\-]+){1,4})";
+                Regex regex = new Regex(pattern);
+                string text = textBox1.Text;
 
-                if (op.ShowDialog() == DialogResult.OK)
+                StreamWriter w = new StreamWriter(@"2DopQEnd");
+
+                for (int i = 0; i < Regex.Matches(text, pattern).Count; i++)
                 {
-
-
-
+                    int index = Regex.Matches(text, pattern)[i].Index;
+                    int lenght = Regex.Matches(text, pattern)[i].Length;
+                    w.WriteLine($"( {Regex.Matches(text, pattern)[i]} ) | Cмещение: {index}-{index + lenght} |");
                 }
-                else
-                {
-                    MessageBox.Show("Провал");
 
-                }
-                filename = op.FileName;
-                string text = File.ReadAllText(op.FileName);
-                textBox1.Clear();
-                textBox1.Text = text;
-            }
-            else
-            {
-                string text = File.ReadAllText(filename);
-                textBox1.Clear();
-                textBox1.Text = text;
+                w.Close();
             }
         }
         private void LoadBut_Click(object sender, EventArgs e)
         {
-            refresh (true);
+            string text = File.ReadAllText(@"2DopQ.txt");
+            textBox1.Clear();
+            textBox1.Text = text;
+            HaveText = true;
+        }
+        private void LoadOtherBut_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+
+            if (op.ShowDialog() == DialogResult.OK)
+            {
+            }
+            else
+            {
+                MessageBox.Show("Провал");
+            }
+            string text = File.ReadAllText(op.FileName);
+            textBox1.Clear();
+            textBox1.Text = text;
+            HaveText= true;
         }
 
+        
+
+
+       
     }
 }

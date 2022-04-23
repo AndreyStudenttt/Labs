@@ -17,13 +17,16 @@ namespace lab5
         public Quest()
         {
             InitializeComponent();
+            HaveFN = false;
         }
         private void button1_Click(object sender, EventArgs e)
         {
             
         }
-        public string filename { get; set; }
-        private void refresh(bool num)
+        public string Filename { get; set; }
+        public bool HaveFN { get; set; }
+        
+        private void Refresh(bool num)
         {
             if (num == true)
             {
@@ -31,16 +34,14 @@ namespace lab5
 
                 if (op.ShowDialog() == DialogResult.OK)
                 {
-
-                   
-
+                    HaveFN = true;
                 }
                 else
                 {
                     MessageBox.Show("Провал");
 
                 }
-                filename = op.FileName;
+                Filename = op.FileName;
                 string[] lines = File.ReadAllLines(op.FileName);
                 listBox1.Items.Clear();
                 foreach (string line in lines)
@@ -51,12 +52,19 @@ namespace lab5
             }
             else
             {
-                string[] lines = File.ReadAllLines(filename);
-                listBox1.Items.Clear();
-                foreach (string line in lines)
+                if(HaveFN == false)
                 {
+                    MessageBox.Show($"Выберите файл");
+                }
+                else
+                {
+                    string[] lines = File.ReadAllLines(Filename);
+                    listBox1.Items.Clear();
+                    foreach (string line in lines)
+                    {
 
-                    listBox1.Items.Add(line);
+                        listBox1.Items.Add(line);
+                    }
                 }
             }
 
@@ -64,11 +72,11 @@ namespace lab5
         private void buttonLoad_Click(object sender, EventArgs e)
         {
 
-            refresh(true);
+            Refresh(true);
         }
         private void buttonZad1_Click(object sender, EventArgs e)
         {
-            refresh(false);
+            Refresh(false);
             for (int i = 0; i < listBox1.Items.Count; i++)
             {
                 string text = listBox1.Items[i].ToString();
@@ -81,7 +89,7 @@ namespace lab5
         }
         private void buttonZad2_Click(object sender, EventArgs e)
         {
-            refresh(false);
+            Refresh(false);
             for (int i = 0; i < listBox1.Items.Count; i++)
             {
                 string text = listBox1.Items[i].ToString();
@@ -94,7 +102,7 @@ namespace lab5
         }
         private void buttonZad3_Click(object sender, EventArgs e)
         {
-            refresh(false);
+            Refresh(false);
             for (int i = 0; i < listBox1.Items.Count; i++)
             {
                 string text = listBox1.Items[i].ToString();
@@ -108,7 +116,7 @@ namespace lab5
 
         private void buttonZad4_Click(object sender, EventArgs e)
         {
-            refresh(false);
+            Refresh(false);
             for (int i = 0; i < listBox1.Items.Count; i++)
             {
                 string text = listBox1.Items[i].ToString();
@@ -128,7 +136,7 @@ namespace lab5
 
         private void button5Zad_Click(object sender, EventArgs e)
         {
-            refresh(false);
+            Refresh(false);
             for (int i = 0; i < listBox1.Items.Count; i++)
             {
                 string text = listBox1.Items[i].ToString();
