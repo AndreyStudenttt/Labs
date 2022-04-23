@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.buttonDopQ1 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.buttonDopQ2 = new System.Windows.Forms.Button();
@@ -37,25 +36,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.LoadOtherBut = new System.Windows.Forms.Button();
             this.buttonDopQ2End = new System.Windows.Forms.Button();
+            this.textBoxDopQ = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(812, 42);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Добро пожаловать в наш магазин, вот наши цены: 1 кг. яблоки - 90 руб., 2 кг. апел" +
-    "ьсины - 130 руб. \r\nТакже в ассортименте орехи в следующей фасовке: 0.5 кг. минда" +
-    "ль - 500 руб.";
             // 
             // buttonDopQ1
             // 
-            this.buttonDopQ1.Location = new System.Drawing.Point(16, 63);
+            this.buttonDopQ1.Location = new System.Drawing.Point(13, 63);
             this.buttonDopQ1.Name = "buttonDopQ1";
-            this.buttonDopQ1.Size = new System.Drawing.Size(185, 100);
+            this.buttonDopQ1.Size = new System.Drawing.Size(145, 40);
             this.buttonDopQ1.TabIndex = 1;
             this.buttonDopQ1.Text = "1ДопЗадание";
             this.buttonDopQ1.UseVisualStyleBackColor = true;
@@ -103,7 +93,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(475, 169);
+            this.label2.Location = new System.Drawing.Point(251, 178);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(148, 24);
             this.label2.TabIndex = 7;
@@ -129,11 +119,44 @@
             this.buttonDopQ2End.UseVisualStyleBackColor = true;
             this.buttonDopQ2End.Click += new System.EventHandler(this.buttonDopQ2End_Click);
             // 
+            // textBoxDopQ
+            // 
+            this.textBoxDopQ.Font = new System.Drawing.Font("Times New Roman", 14.25F);
+            this.textBoxDopQ.Location = new System.Drawing.Point(13, 3);
+            this.textBoxDopQ.Multiline = true;
+            this.textBoxDopQ.Name = "textBoxDopQ";
+            this.textBoxDopQ.Size = new System.Drawing.Size(798, 54);
+            this.textBoxDopQ.TabIndex = 11;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(13, 108);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(185, 40);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Заполнить текстбокс текстом\r\n";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.White;
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(467, 156);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(344, 13);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Все .txt файлы (DopQ, 2DopQ, 2DopQEnd) лежать в lab5\\bin\\Debug\r\n";
+            // 
             // DopQuest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(823, 610);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.textBoxDopQ);
             this.Controls.Add(this.buttonDopQ2End);
             this.Controls.Add(this.LoadOtherBut);
             this.Controls.Add(this.label2);
@@ -142,7 +165,7 @@
             this.Controls.Add(this.buttonDopQ2);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.buttonDopQ1);
-            this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "DopQuest";
             this.Text = "DopQuest";
             this.ResumeLayout(false);
@@ -151,8 +174,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonDopQ1;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button buttonDopQ2;
@@ -161,5 +182,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button LoadOtherBut;
         private System.Windows.Forms.Button buttonDopQ2End;
+        private System.Windows.Forms.TextBox textBoxDopQ;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label5;
     }
 }

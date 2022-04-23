@@ -29,10 +29,11 @@ namespace lab5
         }
         private void buttonDopQ1_Click(object sender, EventArgs e)
         {
-            string pattern = @"(?<nKG>\d.\d|\d+)\sкг\.\s(?<Product>[А-Яа-я]+)\W+(?<Money>\d+)\sруб.";
+            string pattern = @"(?<nKG>\d.\d|\d+)\sкг\.(\s)?(?<Product>[А-Яа-я]+)\W+(?<Money>\d+)\sруб.";
             Regex regex = new Regex(pattern);
-            string text = label1.Text;
+            string text = textBoxDopQ.Text;
             Match match = regex.Match(text);
+            listBox1.Items.Clear();
 
             if (regex.IsMatch(text))
             {
@@ -92,7 +93,7 @@ namespace lab5
         }
         private void LoadBut_Click(object sender, EventArgs e)
         {
-            string text = File.ReadAllText(@"2DopQ.txt");
+            string text = File.ReadAllText($"2DopQ.txt");
             textBox1.Clear();
             textBox1.Text = text;
             HaveText = true;
@@ -103,20 +104,21 @@ namespace lab5
 
             if (op.ShowDialog() == DialogResult.OK)
             {
+                string text = File.ReadAllText(op.FileName);
+                textBox1.Clear();
+                textBox1.Text = text;
+                HaveText = true;
             }
             else
             {
                 MessageBox.Show("Провал");
             }
-            string text = File.ReadAllText(op.FileName);
-            textBox1.Clear();
-            textBox1.Text = text;
-            HaveText= true;
         }
 
-        
-
-
-       
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string text = $" Добро пожаловать в наш магазин, вот наши цены: 1 кг. яблоки - 90 руб., 2 кг. апельсины - 130 руб. Также в ассортименте орехи в следующей фасовке: 0.5 кг.миндаль - 500 руб.";
+            textBoxDopQ.Text = text;
+        }
     }
 }

@@ -19,10 +19,6 @@ namespace lab5
             InitializeComponent();
             HaveFN = false;
         }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-        }
         public string Filename { get; set; }
         public bool HaveFN { get; set; }
         
@@ -35,20 +31,20 @@ namespace lab5
                 if (op.ShowDialog() == DialogResult.OK)
                 {
                     HaveFN = true;
+                    Filename = op.FileName;
+                    string[] lines = File.ReadAllLines(op.FileName);
+                    listBox1.Items.Clear();
+                    foreach (string line in lines)
+                    {
+                        listBox1.Items.Add(line);
+                    }
                 }
                 else
                 {
                     MessageBox.Show("Провал");
 
                 }
-                Filename = op.FileName;
-                string[] lines = File.ReadAllLines(op.FileName);
-                listBox1.Items.Clear();
-                foreach (string line in lines)
-                {
-
-                    listBox1.Items.Add(line);
-                }
+                
             }
             else
             {
@@ -73,6 +69,18 @@ namespace lab5
         {
 
             Refresh(true);
+        }
+        private void buttonLoadQ_Click(object sender, EventArgs e)
+        {
+            HaveFN = true;
+            Filename = $"DopQ.txt";
+
+            string[] lines = File.ReadAllLines($"DopQ.txt");
+            listBox1.Items.Clear();
+            foreach (string line in lines)
+            {
+                listBox1.Items.Add(line);
+            }
         }
         private void buttonZad1_Click(object sender, EventArgs e)
         {
@@ -162,5 +170,7 @@ namespace lab5
             DopQuest f2 = new DopQuest();
             f2.ShowDialog();
         }
+
+        
     }
 }
