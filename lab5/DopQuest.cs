@@ -79,7 +79,7 @@ namespace lab5
                 Regex regex = new Regex(pattern);
                 string text = textBox1.Text;
 
-                StreamWriter w = new StreamWriter(@"2DopQEnd");
+                StreamWriter w = new StreamWriter(@"DopQEnd.txt");
 
                 for (int i = 0; i < Regex.Matches(text, pattern).Count; i++)
                 {
@@ -93,7 +93,7 @@ namespace lab5
         }
         private void LoadBut_Click(object sender, EventArgs e)
         {
-            string text = File.ReadAllText($"2DopQ.txt");
+            string text = File.ReadAllText($"DopQ.txt");
             textBox1.Clear();
             textBox1.Text = text;
             HaveText = true;

@@ -77,7 +77,6 @@
             this.textBox1.Location = new System.Drawing.Point(251, 205);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox1.Size = new System.Drawing.Size(560, 384);
             this.textBox1.TabIndex = 4;
@@ -88,7 +87,7 @@
             this.LoadBut.Name = "LoadBut";
             this.LoadBut.Size = new System.Drawing.Size(159, 28);
             this.LoadBut.TabIndex = 5;
-            this.LoadBut.Text = "Загрузить из 2DopQ.txt";
+            this.LoadBut.Text = "Загрузить из DopQ.txt";
             this.LoadBut.UseVisualStyleBackColor = true;
             this.LoadBut.Click += new System.EventHandler(this.LoadBut_Click);
             // 
@@ -118,7 +117,7 @@
             this.buttonDopQ2End.Name = "buttonDopQ2End";
             this.buttonDopQ2End.Size = new System.Drawing.Size(155, 40);
             this.buttonDopQ2End.TabIndex = 10;
-            this.buttonDopQ2End.Text = "2ДопЗадание\r\n(Выгрузить в 2DopQEnd)";
+            this.buttonDopQ2End.Text = "ДопЗадание\r\n(Выгрузить в 2DopQEnd)";
             this.buttonDopQ2End.UseVisualStyleBackColor = true;
             this.buttonDopQ2End.Click += new System.EventHandler(this.buttonDopQ2End_Click);
             // 
@@ -149,9 +148,9 @@
             this.label5.ForeColor = System.Drawing.Color.Red;
             this.label5.Location = new System.Drawing.Point(467, 156);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(344, 13);
+            this.label5.Size = new System.Drawing.Size(312, 13);
             this.label5.TabIndex = 15;
-            this.label5.Text = "Все .txt файлы (DopQ, 2DopQ, 2DopQEnd) лежать в lab5\\bin\\Debug\r\n";
+            this.label5.Text = "Все .txt файлы (Q, DopQ, DopQEnd) лежать в lab5\\bin\\Debug\r\n";
             // 
             // label1
             // 

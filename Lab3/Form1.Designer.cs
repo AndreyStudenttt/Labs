@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.создатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,6 +39,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonCircle = new System.Windows.Forms.Button();
             this.buttonStick2 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button3 = new System.Windows.Forms.Button();
@@ -63,7 +65,6 @@
             this.button10 = new System.Windows.Forms.Button();
             this.button17 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.buttonCircle = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.DrawPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -161,6 +162,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Выбор кисти";
+            // 
+            // buttonCircle
+            // 
+            this.buttonCircle.Location = new System.Drawing.Point(6, 115);
+            this.buttonCircle.Name = "buttonCircle";
+            this.buttonCircle.Size = new System.Drawing.Size(59, 23);
+            this.buttonCircle.TabIndex = 6;
+            this.buttonCircle.Text = "Круг";
+            this.buttonCircle.UseVisualStyleBackColor = true;
+            this.buttonCircle.Click += new System.EventHandler(this.buttonCircle_Click);
             // 
             // buttonStick2
             // 
@@ -413,16 +424,6 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Выбор цвета";
             // 
-            // buttonCircle
-            // 
-            this.buttonCircle.Location = new System.Drawing.Point(6, 115);
-            this.buttonCircle.Name = "buttonCircle";
-            this.buttonCircle.Size = new System.Drawing.Size(59, 23);
-            this.buttonCircle.TabIndex = 6;
-            this.buttonCircle.Text = "Круг";
-            this.buttonCircle.UseVisualStyleBackColor = true;
-            this.buttonCircle.Click += new System.EventHandler(this.buttonCircle_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -431,6 +432,7 @@
             this.Controls.Add(this.ToolPanel);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.DrawPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Paint";

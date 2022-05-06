@@ -158,7 +158,7 @@
             this.buttonLoadQ.Name = "buttonLoadQ";
             this.buttonLoadQ.Size = new System.Drawing.Size(122, 23);
             this.buttonLoadQ.TabIndex = 13;
-            this.buttonLoadQ.Text = "Загрузить из DopQ";
+            this.buttonLoadQ.Text = "Загрузить из Q";
             this.buttonLoadQ.UseVisualStyleBackColor = true;
             this.buttonLoadQ.Click += new System.EventHandler(this.buttonLoadQ_Click);
             // 
@@ -169,9 +169,9 @@
             this.label5.ForeColor = System.Drawing.Color.Red;
             this.label5.Location = new System.Drawing.Point(444, 386);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(344, 13);
+            this.label5.Size = new System.Drawing.Size(312, 13);
             this.label5.TabIndex = 14;
-            this.label5.Text = "Все .txt файлы (DopQ, 2DopQ, 2DopQEnd) лежать в lab5\\bin\\Debug\r\n";
+            this.label5.Text = "Все .txt файлы (Q, DopQ, DopQEnd) лежать в lab5\\bin\\Debug\r\n";
             // 
             // Quest
             // 

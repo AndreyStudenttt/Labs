@@ -34,6 +34,7 @@ namespace lab2
             {
                 return fname;
             }
+            set { fname = value; }
         }
         public string Lname
         {

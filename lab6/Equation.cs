@@ -10,5 +10,6 @@ namespace lab6
     {
 
         public abstract double GetValue(double x);
+
     }
 }

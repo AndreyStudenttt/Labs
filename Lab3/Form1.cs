@@ -20,7 +20,8 @@ namespace Lab3
             {
                 button.Click += button4_Click;
             }
-            CreateBlank(2000, 1000);
+            CreateBlank(600, 400);
+            this.MaximumSize = new Size(600+ 170, 400+40); 
         }
         public Color DefaultColor
         {
@@ -129,7 +130,20 @@ namespace Lab3
             cf.ShowDialog();
             if (cf.Canceled == false)
             {
-                CreateBlank(cf.H, cf.W);
+                CreateBlank(cf.W,cf.H);
+                if (cf.H < 347)
+                {
+                    int nedosth = 380 - cf.H;
+                    this.MaximumSize = new Size(170 + cf.W, cf.H + nedosth+40);
+                    this.Size = new Size(MaximumSize.Width, MaximumSize.Height);
+                }
+                else
+                {
+                    this.MaximumSize = new Size(170 + cf.W, cf.H+40);
+                    this.MaximizeBox = true;
+                    this.Size = new Size(MaximumSize.Width, MaximumSize.Height);
+                }
+                
             }
         }
 

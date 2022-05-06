@@ -73,9 +73,9 @@ namespace lab5
         private void buttonLoadQ_Click(object sender, EventArgs e)
         {
             HaveFN = true;
-            Filename = $"DopQ.txt";
+            Filename = $"Q.txt";
 
-            string[] lines = File.ReadAllLines($"DopQ.txt");
+            string[] lines = File.ReadAllLines($"Q.txt");
             listBox1.Items.Clear();
             foreach (string line in lines)
             {
