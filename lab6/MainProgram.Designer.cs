@@ -46,6 +46,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.TBSumm = new System.Windows.Forms.TextBox();
+            this.CBIntegr = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.TBN = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -56,6 +61,11 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.TBN);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.CBIntegr);
+            this.panel1.Controls.Add(this.TBSumm);
             this.panel1.Controls.Add(this.CBEqua);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.TBRight);
@@ -70,7 +80,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(196, 604);
+            this.panel1.Size = new System.Drawing.Size(212, 604);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -136,7 +146,7 @@
             // 
             // DrawFunBut
             // 
-            this.DrawFunBut.Location = new System.Drawing.Point(14, 175);
+            this.DrawFunBut.Location = new System.Drawing.Point(14, 159);
             this.DrawFunBut.Name = "DrawFunBut";
             this.DrawFunBut.Size = new System.Drawing.Size(86, 23);
             this.DrawFunBut.TabIndex = 4;
@@ -185,9 +195,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.panel2.Controls.Add(this.chart1);
-            this.panel2.Location = new System.Drawing.Point(214, 12);
+            this.panel2.Location = new System.Drawing.Point(224, 12);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(920, 604);
+            this.panel2.Size = new System.Drawing.Size(910, 604);
             this.panel2.TabIndex = 1;
             // 
             // chart1
@@ -205,9 +215,50 @@
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.chart1.Series.Add(series2);
-            this.chart1.Size = new System.Drawing.Size(920, 604);
+            this.chart1.Size = new System.Drawing.Size(910, 604);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
+            // 
+            // TBSumm
+            // 
+            this.TBSumm.Location = new System.Drawing.Point(71, 239);
+            this.TBSumm.Name = "TBSumm";
+            this.TBSumm.ReadOnly = true;
+            this.TBSumm.Size = new System.Drawing.Size(119, 20);
+            this.TBSumm.TabIndex = 14;
+            // 
+            // CBIntegr
+            // 
+            this.CBIntegr.FormattingEnabled = true;
+            this.CBIntegr.Location = new System.Drawing.Point(0, 188);
+            this.CBIntegr.Name = "CBIntegr";
+            this.CBIntegr.Size = new System.Drawing.Size(206, 21);
+            this.CBIntegr.TabIndex = 15;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(11, 242);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(54, 13);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Площадь";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(11, 218);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(87, 13);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "Кол. Разбиения";
+            // 
+            // TBN
+            // 
+            this.TBN.Location = new System.Drawing.Point(104, 215);
+            this.TBN.Name = "TBN";
+            this.TBN.Size = new System.Drawing.Size(86, 20);
+            this.TBN.TabIndex = 17;
             // 
             // MainProgram
             // 
@@ -245,6 +296,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox TBLeft;
         private System.Windows.Forms.ComboBox CBEqua;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox CBIntegr;
+        private System.Windows.Forms.TextBox TBSumm;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox TBN;
     }
 }
 

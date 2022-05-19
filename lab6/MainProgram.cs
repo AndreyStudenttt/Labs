@@ -33,7 +33,9 @@ namespace lab6
             CBEqua.Items.Add(new QuadEquation(0, 0, 0));
             CBEqua.Items.Add(new MonoEquation(0, 0));
             CBEqua.Items.Add(new SinEquation(0));
+            CBIntegr.Items.Add(new IntegrateRectangle());
             CBEqua.SelectedIndex = 0;
+            CBIntegr.SelectedIndex = 0;
             TBa.Text = "1";
             TBb.Text = "1";
             TBc.Text = "1";
@@ -45,6 +47,7 @@ namespace lab6
         {
             chart1.Series[0].Points.Clear();
             Equation eq = CBEqua.SelectedItem as Equation;
+            Integrator integr = CBIntegr.SelectedItem as Integrator;
             if (eq != null)
             {
                 if (eq is QuadEquation quad)
@@ -67,9 +70,13 @@ namespace lab6
                 chart1.ChartAreas[0].AxisX.Maximum = Convert.ToInt32(TBRight.Text);
                 
                 DrawFunction(Convert.ToDouble(TBLeft.Text), Convert.ToDouble(TBRight.Text), chart1.Series[0], eq);
+
+                if (TBN.Text != string.Empty)
+                {
+                    double summ = integr.Integrate(Convert.ToDouble(TBLeft.Text), Convert.ToDouble(TBRight.Text),eq,Convert.ToInt32(TBN.Text));
+                    TBSumm.Text = $"{summ}";
+                }
             }
-
-
         }
 
 
