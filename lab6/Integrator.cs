@@ -27,7 +27,8 @@ namespace lab6
         /// </summary>
         /// <param name="x1">левая граница интегрирования</param>
         /// <param name="x2">правая граница интегрирования</param>
-        public double Integrate(double x1, double x2)
+        
+        public double[] Integrate(double x1, double x2)
         {
             //проверяем допустимость параметров:
             if (x1 >= x2)
@@ -42,11 +43,12 @@ namespace lab6
             //определяем ширину интервала:
             double h = (x2 - x1) / N;
             double sum = 0; //"накопитель" для значения интеграла
+            double[] y1 = new double[N];
             for (int i = 0; i < N; i++)
             {
-                sum = sum + equation.GetValue(x1 + i * h) * h;
+                y1[i] = equation.GetValue(x1 + i * h) * h;
             }
-            return sum;
+            return y1;
         }
     }
 

@@ -28,10 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.CBEqua = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.TBRight = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.TBLeft = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.TBc = new System.Windows.Forms.TextBox();
             this.DrawFunBut = new System.Windows.Forms.Button();
             this.TBb = new System.Windows.Forms.TextBox();
             this.TBa = new System.Windows.Forms.TextBox();
@@ -49,6 +56,13 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.Controls.Add(this.CBEqua);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.TBRight);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.TBLeft);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.TBc);
             this.panel1.Controls.Add(this.DrawFunBut);
             this.panel1.Controls.Add(this.TBb);
             this.panel1.Controls.Add(this.TBa);
@@ -56,50 +70,113 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(196, 589);
+            this.panel1.Size = new System.Drawing.Size(196, 604);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // CBEqua
+            // 
+            this.CBEqua.FormattingEnabled = true;
+            this.CBEqua.Location = new System.Drawing.Point(3, 3);
+            this.CBEqua.Name = "CBEqua";
+            this.CBEqua.Size = new System.Drawing.Size(190, 21);
+            this.CBEqua.TabIndex = 13;
+            this.CBEqua.SelectedIndexChanged += new System.EventHandler(this.CBEqua_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(11, 136);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(27, 13);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "right";
+            // 
+            // TBRight
+            // 
+            this.TBRight.Location = new System.Drawing.Point(40, 133);
+            this.TBRight.Name = "TBRight";
+            this.TBRight.Size = new System.Drawing.Size(100, 20);
+            this.TBRight.TabIndex = 11;
+            this.TBRight.TextChanged += new System.EventHandler(this.TBa_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(16, 110);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(21, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "left";
+            // 
+            // TBLeft
+            // 
+            this.TBLeft.Location = new System.Drawing.Point(40, 107);
+            this.TBLeft.Name = "TBLeft";
+            this.TBLeft.Size = new System.Drawing.Size(100, 20);
+            this.TBLeft.TabIndex = 9;
+            this.TBLeft.TextChanged += new System.EventHandler(this.TBa_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(21, 83);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(13, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "c";
+            // 
+            // TBc
+            // 
+            this.TBc.Location = new System.Drawing.Point(40, 80);
+            this.TBc.Name = "TBc";
+            this.TBc.Size = new System.Drawing.Size(100, 20);
+            this.TBc.TabIndex = 7;
+            this.TBc.TextChanged += new System.EventHandler(this.TBa_TextChanged);
             // 
             // DrawFunBut
             // 
-            this.DrawFunBut.Location = new System.Drawing.Point(14, 84);
+            this.DrawFunBut.Location = new System.Drawing.Point(14, 175);
             this.DrawFunBut.Name = "DrawFunBut";
-            this.DrawFunBut.Size = new System.Drawing.Size(75, 23);
+            this.DrawFunBut.Size = new System.Drawing.Size(86, 23);
             this.DrawFunBut.TabIndex = 4;
-            this.DrawFunBut.Text = "button1";
+            this.DrawFunBut.Text = "Нарисовать";
             this.DrawFunBut.UseVisualStyleBackColor = true;
             this.DrawFunBut.Click += new System.EventHandler(this.DrawFunBut_Click);
             // 
             // TBb
             // 
-            this.TBb.Location = new System.Drawing.Point(57, 34);
+            this.TBb.Location = new System.Drawing.Point(40, 54);
             this.TBb.Name = "TBb";
             this.TBb.Size = new System.Drawing.Size(100, 20);
             this.TBb.TabIndex = 3;
+            this.TBb.TextChanged += new System.EventHandler(this.TBa_TextChanged);
             // 
             // TBa
             // 
-            this.TBa.Location = new System.Drawing.Point(57, 3);
+            this.TBa.Location = new System.Drawing.Point(40, 28);
             this.TBa.Name = "TBa";
             this.TBa.Size = new System.Drawing.Size(100, 20);
             this.TBa.TabIndex = 2;
+            this.TBa.TextChanged += new System.EventHandler(this.TBa_TextChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 37);
+            this.label2.Location = new System.Drawing.Point(21, 57);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 13);
+            this.label2.Size = new System.Drawing.Size(13, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Знач b";
+            this.label2.Text = "b";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 6);
+            this.label1.Location = new System.Drawing.Point(21, 31);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.Size = new System.Drawing.Size(13, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Знач а";
+            this.label1.Text = "a";
             // 
             // panel2
             // 
@@ -110,25 +187,25 @@
             this.panel2.Controls.Add(this.chart1);
             this.panel2.Location = new System.Drawing.Point(214, 12);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(511, 589);
+            this.panel2.Size = new System.Drawing.Size(920, 604);
             this.panel2.TabIndex = 1;
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(0, 0);
             this.chart1.MinimumSize = new System.Drawing.Size(564, 587);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(564, 589);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
+            this.chart1.Size = new System.Drawing.Size(920, 604);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
@@ -136,10 +213,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(733, 612);
+            this.ClientSize = new System.Drawing.Size(1142, 627);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.MinimumSize = new System.Drawing.Size(676, 623);
             this.Name = "MainProgram";
             this.Text = "Интегрирование";
             this.Load += new System.EventHandler(this.MainProgram_Load);
@@ -161,6 +238,13 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button DrawFunBut;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox TBc;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox TBRight;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox TBLeft;
+        private System.Windows.Forms.ComboBox CBEqua;
     }
 }
 

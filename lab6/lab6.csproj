@@ -61,9 +61,11 @@
     <Compile Include="MainProgram.Designer.cs">
       <DependentUpon>MainProgram.cs</DependentUpon>
     </Compile>
+    <Compile Include="MonoEquation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuadEquation.cs" />
+    <Compile Include="SInEquation.cs" />
     <EmbeddedResource Include="MainProgram.resx">
       <DependentUpon>MainProgram.cs</DependentUpon>
     </EmbeddedResource>

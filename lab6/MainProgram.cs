@@ -16,29 +16,107 @@ namespace lab6
         public MainProgram()
         {
             InitializeComponent();
-            
+
         }
         void DrawFunction(double x1, double x2, Series series, Equation equation)
         {
             for (int i = (int)x1; i < (int)x2; i++)
             {
                 double y = equation.GetValue(i);
-                chart1.Series[0].Points.AddXY(i,(int)y);
+                chart1.Series[0].Points.AddXY(i, (int)y);
             }
-            
+
         }
 
         private void MainProgram_Load(object sender, EventArgs e)
         {
-           
+            CBEqua.Items.Add(new QuadEquation(0, 0, 0));
+            CBEqua.Items.Add(new MonoEquation(0, 0));
+            CBEqua.Items.Add(new SinEquation(0));
+            CBEqua.SelectedIndex = 0;
+            TBa.Text = "1";
+            TBb.Text = "1";
+            TBc.Text = "1";
+            TBLeft.Text = "-10";
+            TBRight.Text = "10";
         }
 
         private void DrawFunBut_Click(object sender, EventArgs e)
         {
-            var equation = new QuadEquation(0, 0, 0);
+            chart1.Series[0].Points.Clear();
+            Equation eq = CBEqua.SelectedItem as Equation;
+            if (eq != null)
+            {
+                if (eq is QuadEquation quad)
+                {
+                    quad.a = Convert.ToDouble(TBa.Text);
+                    quad.b = Convert.ToDouble(TBb.Text);
+                    quad.c = Convert.ToDouble(TBc.Text);
+                }
+                else if (eq is MonoEquation mono)
+                {
+                    mono.a = Convert.ToDouble(TBa.Text);
+                    mono.b = Convert.ToDouble(TBb.Text);
+                }
+                else if (eq is SinEquation sin)
+                {
+                    sin.a = Convert.ToDouble(TBa.Text);
+                }
+                chart1.Series[0].ChartType = SeriesChartType.Spline;
+                chart1.ChartAreas[0].AxisX.Minimum = Convert.ToInt32(TBLeft.Text);
+                chart1.ChartAreas[0].AxisX.Maximum = Convert.ToInt32(TBRight.Text);
+                
+                DrawFunction(Convert.ToDouble(TBLeft.Text), Convert.ToDouble(TBRight.Text), chart1.Series[0], eq);
+            }
 
 
-            DrawFunction(Convert.ToDouble(TBa.Text), Convert.ToDouble(TBb.Text), chart1.Series[0],equation);
+        }
+
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void TBa_TextChanged(object sender, EventArgs e)
+        {
+            if (((TextBox)sender).TextLength == 0)
+            {
+                ((TextBox)sender).Text = "0";
+            }
+
+        }
+
+        private void CBEqua_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (CBEqua.SelectedIndex)
+            {
+                case 0:
+                    label1.Enabled = true;
+                    label2.Enabled = true;
+                    label3.Enabled = true;
+                    TBa.Enabled = true;
+                    TBb.Enabled = true;
+                    TBc.Enabled = true;
+                    break;
+                case 1:
+                    label1.Enabled = true;
+                    label2.Enabled = true;
+                    label3.Enabled = false;
+                    TBa.Enabled = true;
+                    TBb.Enabled = true;
+                    TBc.Enabled = false;
+                    break;
+                case 2:
+                    label1.Enabled = true;
+                    label2.Enabled = false;
+                    label3.Enabled = false;
+                    TBa.Enabled = true;
+                    TBb.Enabled = false;
+                    TBc.Enabled = false;
+                    break;
+                default: break;
+            }
         }
     }
 }
