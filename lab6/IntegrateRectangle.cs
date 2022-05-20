@@ -9,7 +9,7 @@ namespace lab6
     public class IntegrateRectangle : Integrator
     {
         public IntegrateRectangle() { }
-        public override double Integrate(double x1, double x2, Equation equation, int N)
+        public override double Integrate(double x1, double x2, GetValueDelegate gV, double N)
         {
             if (x1 >= x2)
             {
@@ -24,10 +24,14 @@ namespace lab6
             double sum = 0; //"накопитель" для значения интеграла
             for (int i = 0; i < N; i++)
             {
-                sum = sum + equation.GetValue(x1 + i * h) * h;
+                sum = sum + gV(x1 + i * h) * h;
             }
             return sum;
 
+        }
+        public override double Integrate( double x1, double x2, Equation equation, double N)
+        {
+            return Integrate(x1, x2, equation.GetValue, N);
         }
         public override string ToString()
         {

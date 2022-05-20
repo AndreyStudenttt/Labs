@@ -28,10 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.TBN = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.CBIntegr = new System.Windows.Forms.ComboBox();
+            this.TBSumm = new System.Windows.Forms.TextBox();
             this.CBEqua = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.TBRight = new System.Windows.Forms.TextBox();
@@ -46,11 +51,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.TBSumm = new System.Windows.Forms.TextBox();
-            this.CBIntegr = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.TBN = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -82,7 +82,47 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(212, 604);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(11, 218);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(87, 13);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "Кол. Разбиения";
+            // 
+            // TBN
+            // 
+            this.TBN.Location = new System.Drawing.Point(104, 215);
+            this.TBN.Name = "TBN";
+            this.TBN.Size = new System.Drawing.Size(86, 20);
+            this.TBN.TabIndex = 17;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(11, 242);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(54, 13);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Площадь";
+            // 
+            // CBIntegr
+            // 
+            this.CBIntegr.FormattingEnabled = true;
+            this.CBIntegr.Location = new System.Drawing.Point(0, 188);
+            this.CBIntegr.Name = "CBIntegr";
+            this.CBIntegr.Size = new System.Drawing.Size(206, 21);
+            this.CBIntegr.TabIndex = 15;
+            // 
+            // TBSumm
+            // 
+            this.TBSumm.Location = new System.Drawing.Point(71, 239);
+            this.TBSumm.Name = "TBSumm";
+            this.TBSumm.ReadOnly = true;
+            this.TBSumm.Size = new System.Drawing.Size(119, 20);
+            this.TBSumm.TabIndex = 14;
             // 
             // CBEqua
             // 
@@ -202,63 +242,22 @@
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(0, 0);
             this.chart1.MinimumSize = new System.Drawing.Size(564, 587);
             this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(910, 604);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
-            // 
-            // TBSumm
-            // 
-            this.TBSumm.Location = new System.Drawing.Point(71, 239);
-            this.TBSumm.Name = "TBSumm";
-            this.TBSumm.ReadOnly = true;
-            this.TBSumm.Size = new System.Drawing.Size(119, 20);
-            this.TBSumm.TabIndex = 14;
-            // 
-            // CBIntegr
-            // 
-            this.CBIntegr.FormattingEnabled = true;
-            this.CBIntegr.Location = new System.Drawing.Point(0, 188);
-            this.CBIntegr.Name = "CBIntegr";
-            this.CBIntegr.Size = new System.Drawing.Size(206, 21);
-            this.CBIntegr.TabIndex = 15;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 242);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(54, 13);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Площадь";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(11, 218);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(87, 13);
-            this.label7.TabIndex = 18;
-            this.label7.Text = "Кол. Разбиения";
-            // 
-            // TBN
-            // 
-            this.TBN.Location = new System.Drawing.Point(104, 215);
-            this.TBN.Name = "TBN";
-            this.TBN.Size = new System.Drawing.Size(86, 20);
-            this.TBN.TabIndex = 17;
             // 
             // MainProgram
             // 

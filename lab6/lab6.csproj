@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Equation.cs" />
     <Compile Include="IntegrateRectangle.cs" />
+    <Compile Include="IntegrateSimpson.cs" />
     <Compile Include="Integrator.cs" />
     <Compile Include="MainProgram.cs">
       <SubType>Form</SubType>

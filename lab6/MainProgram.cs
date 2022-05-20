@@ -20,6 +20,10 @@ namespace lab6
         }
         void DrawFunction(double x1, double x2, Series series, Equation equation)
         {
+            if (x1 >= x2)
+            {
+                throw new ArgumentException("Правая граница интегирования должны быть больше левой!");
+            }
             for (int i = (int)x1; i < (int)x2; i++)
             {
                 double y = equation.GetValue(i);
@@ -34,6 +38,7 @@ namespace lab6
             CBEqua.Items.Add(new MonoEquation(0, 0));
             CBEqua.Items.Add(new SinEquation(0));
             CBIntegr.Items.Add(new IntegrateRectangle());
+            CBIntegr.Items.Add(new IntegrateSimpson());
             CBEqua.SelectedIndex = 0;
             CBIntegr.SelectedIndex = 0;
             TBa.Text = "1";
@@ -70,20 +75,20 @@ namespace lab6
                 chart1.ChartAreas[0].AxisX.Maximum = Convert.ToInt32(TBRight.Text);
                 
                 DrawFunction(Convert.ToDouble(TBLeft.Text), Convert.ToDouble(TBRight.Text), chart1.Series[0], eq);
-
-                if (TBN.Text != string.Empty)
+                int N;
+                if (TBN.Text != string.Empty )
                 {
-                    double summ = integr.Integrate(Convert.ToDouble(TBLeft.Text), Convert.ToDouble(TBRight.Text),eq,Convert.ToInt32(TBN.Text));
-                    TBSumm.Text = $"{summ}";
+                    if(Int32.TryParse(TBN.Text, out N) & Convert.ToInt32(TBN.Text) != 0 & Convert.ToInt32(TBN.Text) > 0)
+                    {
+                        double summ = integr.Integrate(Convert.ToDouble(TBLeft.Text), Convert.ToDouble(TBRight.Text), eq, N);
+                        TBSumm.Text = $"{summ}";
+                    }
+                    else { throw new ArgumentException("Неверно вписано значение разбиения"); };
+                    
                 }
             }
         }
 
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void TBa_TextChanged(object sender, EventArgs e)
         {
