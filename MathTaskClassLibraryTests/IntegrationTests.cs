@@ -39,7 +39,7 @@ namespace MathTaskClassLibraryTests
 
             Assert.ThrowsException<ArgumentException>(() =>
                 ig.Integrate( 0, 10, new MonoEquation(1, 1).GetValue, -2),
-                "Шаг интегрирования не может быть отрицательным или равным нулю");
+                "Шаг интегрирования не может быть отрицательным или равным нулю!");
         }
     }
 }

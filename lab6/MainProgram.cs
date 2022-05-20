@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,6 +54,10 @@ namespace lab6
             chart1.Series[0].Points.Clear();
             Equation eq = CBEqua.SelectedItem as Equation;
             Integrator integr = CBIntegr.SelectedItem as Integrator;
+            if (integr.BlockButton == null) integr.BlockButton += OnBlockButton;
+            if (integr.OnStep == null) integr.OnStep += OnIntegratorStep;
+            if (integr.OnFinish == null) integr.OnFinish += OnIntegratorFinish;
+            if (integr.ThreadCount == null) integr.ThreadCount += OnThreadFinishCount;
             if (eq != null)
             {
                 if (eq is QuadEquation quad)
@@ -78,13 +83,12 @@ namespace lab6
                 int N;
                 if (TBN.Text != string.Empty )
                 {
-                    if(Int32.TryParse(TBN.Text, out N) & Convert.ToInt32(TBN.Text) != 0 & Convert.ToInt32(TBN.Text) > 0)
+                    if (Int32.TryParse(TBN.Text, out N))
                     {
                         double summ = integr.Integrate(Convert.ToDouble(TBLeft.Text), Convert.ToDouble(TBRight.Text), eq, N);
                         TBSumm.Text = $"{summ}";
                     }
                     else { throw new ArgumentException("Неверно вписано значение разбиения"); };
-                    
                 }
             }
         }
@@ -129,6 +133,37 @@ namespace lab6
                     break;
                 default: break;
             }
+        }
+        void OnBlockButton(object sender, ButtonEventArgs args)
+        {
+            DrawFunBut.Enabled = args.sw;
+        }
+        static void PrintFile(double x, double f, double sum)
+        {
+            File.AppendAllText("OnStep.txt", x + " " + f + " " + sum + "\n");
+        }
+        static void PrintBinaryFile(double x, double f, double sum)
+        {
+            using (BinaryWriter bw = new BinaryWriter(File.Open("bw.dat", FileMode.OpenOrCreate)))
+            {
+                bw.Seek(0, SeekOrigin.End);
+                bw.Write(x + " " + f + " " + sum + "\n");
+                bw.Close();
+            }
+
+        }
+        void OnThreadFinishCount(object sender, ThreadEventArgs args)
+        {
+            MessageBox.Show($"Кол. тредов интегрирования {args.CalcTime}");
+        }
+        void OnIntegratorFinish(object sender, IntegratorEventArgs args)
+        {
+            DrawFunBut.Enabled = true;
+        }
+        private void OnIntegratorStep(object sender, IntegratorEventArgs args)
+        {
+            PrintFile(args.X, args.F, args.Integr);
+            PrintBinaryFile(args.X, args.F, args.Integr);
         }
     }
 }
