@@ -12,6 +12,8 @@ namespace Lab3
 {
     public partial class Form1 : Form
     {
+        
+        
         public Form1()
         {
             InitializeComponent();
@@ -22,6 +24,7 @@ namespace Lab3
             }
             CreateBlank(600, 400);
             this.MaximumSize = new Size(600+ 170, 400+40); 
+            
         }
         public Color DefaultColor
         {

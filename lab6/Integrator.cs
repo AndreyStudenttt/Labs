@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace lab6
 {
     public delegate double GetValueDelegate(double x);
+
     public class ButtonEventArgs
     {
         public bool sw { get; set; }
