@@ -14,13 +14,19 @@ namespace lab9
 {
     public partial class TBWater : Form
     {
+        public List<ClassFiles> classFiles { get; set; }
+        
         public TBWater()
         {
             InitializeComponent();
             ButDelDub.Enabled = false;
             ButSortDay.Enabled = false;
+            ButPathWater.Enabled = false;
+            ButAutoPathWater.Enabled = false;
+            ButPicWater.Enabled = false;
+            ButSave.Enabled = false;
             comboBox1.Enabled = false;
-            comboBox2.Enabled= false;
+            comboBox2.Enabled = false;
             comboBox1.Items.Add("По дням");
             comboBox1.Items.Add("По неделям");
             comboBox1.Items.Add("По месяцам");
@@ -39,7 +45,6 @@ namespace lab9
         }
         string path { get; set; }
         string pathpic { get; set; }
-        string pathsavepic { get; set; }
         string pathwater { get; set; }
         List<string> lines = File.ReadAllLines(@"save.txt").ToList(); // для сохр последнего пути, находится в lab9/bin/debug
 
@@ -53,9 +58,9 @@ namespace lab9
                 path = fbd.SelectedPath;
                 TBPath.Text = fbd.SelectedPath;
 
-                lines.RemoveRange(1,1);
+                lines.RemoveRange(1, 1);
                 lines.Insert(1, fbd.SelectedPath);
-                File.WriteAllLines(@"save.txt",lines);
+                File.WriteAllLines(@"save.txt", lines);
                 Zaponitel();
                 DeleteZeroFolder(path);
                 ButDelDub.Enabled = true;
@@ -63,11 +68,12 @@ namespace lab9
                 comboBox1.Enabled = true;
                 comboBox2.Enabled = true;
             }
-            
+
 
         }
-        List<ClassFiles> classFiles = new List<ClassFiles>();
-        public void Zaponitel ()
+        
+        
+        public void Zaponitel()
         {
             DirectoryInfo dir = new DirectoryInfo($"{path}");
             classFiles.Clear();
@@ -91,8 +97,8 @@ namespace lab9
         }
         private void AutoButPath_Click(object sender, EventArgs e)
         {
-           
-            path = lines[1]; 
+
+            path = lines[1];
             TBPath.Text = path;
             ButDelDub.Enabled = true;
             ButSortDay.Enabled = true;
@@ -101,10 +107,10 @@ namespace lab9
 
             Zaponitel();
             DeleteZeroFolder(path);
-            
+
         }
 
-        public void DelDubByNameAndSize ()
+        public void DelDubByNameAndSize()
         {
             for (int i = 0; i < classFiles.Count; i++)
             {
@@ -142,7 +148,7 @@ namespace lab9
                 }
             }
         }
-        public void DelDubByNameAndDate ()
+        public void DelDubByNameAndDate()
         {
             for (int i = 0; i < classFiles.Count; i++)
             {
@@ -184,7 +190,7 @@ namespace lab9
                 }
             }
         }
-        public void DelDubByBytes ()
+        public void DelDubByBytes()
         {
             for (int i = 0; i < classFiles.Count; i++)
             {
@@ -202,7 +208,7 @@ namespace lab9
                     }
                 }
 
-                    // доделать проверку found
+                // доделать проверку found
             }
         }
         private void ButDelDub_Click(object sender, EventArgs e)
@@ -275,7 +281,7 @@ namespace lab9
                 {
                     File.Move(classFiles[i].path, $"{Path.Combine(newpath, classFiles[i].filename)}{i}{classFiles[i].extension}");
                     classFiles[i].path = $"{Path.Combine(newpath, classFiles[i].filename)}{i}{classFiles[i].extension}";
-                   listBox1.Items.Add($"Был перенесен файл с названием: {classFiles[i].filename} + 1 в папку {classFiles[i].day}");
+                    listBox1.Items.Add($"Был перенесен файл с названием: {classFiles[i].filename} + 1 в папку {classFiles[i].day}");
                 }
                 DeleteZeroFolder(path);
 
@@ -287,7 +293,7 @@ namespace lab9
         private void MainProgram_Load(object sender, EventArgs e)
         {
             this.Width = 739; // 739; 672
-            this.Height = 672;
+            this.Height = 758;
             panel1.Visible = false;
         }
 
@@ -313,13 +319,14 @@ namespace lab9
             {
                 pathpic = op.FileName;
 
-              //  int sizepic = op.SafeFileName.Length;
-              //  pathsavepic = pathpic.Remove(pathpic.Length-sizepic,sizepic);
-
                 TBPathPic.Text = op.FileName;
                 lines.RemoveRange(2, 1);
                 lines.Insert(2, op.FileName);
                 File.WriteAllLines(@"save.txt", lines);
+                Image image = Image.FromFile(pathpic);
+                pictureBox1.Image = image;
+                ButPathWater.Enabled = true;
+                ButAutoPathWater.Enabled = true;
             }
         }
         private void ButPathAutoPic_Click(object sender, EventArgs e)
@@ -327,9 +334,14 @@ namespace lab9
 
             pathpic = lines[2];
             TBPathPic.Text = pathpic;
+            Image image = Image.FromFile(pathpic);
+            pictureBox1.Image = image;
+            ButPathWater.Enabled = true;
+            ButAutoPathWater.Enabled = true;
+
         }
 
-        
+
 
         private void ButPicWater_Click(object sender, EventArgs e)
         {
@@ -339,7 +351,7 @@ namespace lab9
             using (Brush watermarkBrush = new TextureBrush(watermarkImage))
             {
                 imageGraphics.FillRectangle(watermarkBrush, new Rectangle(new Point(0, 0), image.Size));
-                image.Save(Path.Combine(Path.GetDirectoryName(pathpic), Path.GetFileNameWithoutExtension(pathpic)+"new.png" ));
+                image.Save(Path.Combine(Path.GetDirectoryName(pathpic), Path.GetFileNameWithoutExtension(pathpic) + "new.png"));
             }
         }
 
@@ -354,13 +366,35 @@ namespace lab9
                 lines.RemoveRange(3, 1);
                 lines.Insert(3, op.FileName);
                 File.WriteAllLines(@"save.txt", lines);
+                ButPicWater.Enabled = true;
+                ButSave.Enabled = true;
+                Image image = Image.FromFile(pathpic);
+                Graphics imageGraphics = Graphics.FromImage(image);
+                Image watermarkImage = Image.FromFile(pathwater);
+                Brush watermarkBrush = new TextureBrush(watermarkImage);
+
+                imageGraphics.FillRectangle(watermarkBrush, new Rectangle(new Point(0, 0), image.Size));
+                pictureBox1.Image = image;
+
+
             }
         }
 
         private void ButAutoPathWater_Click(object sender, EventArgs e)
         {
-             pathwater = lines[3];
+            pathwater = lines[3];
             TBPathWater.Text = pathwater;
+            ButPicWater.Enabled = true;
+            ButSave.Enabled = true;
+            Image image = Image.FromFile(pathpic);
+            Image watermarkImage = Image.FromFile(pathwater);
+            Graphics imageGraphics = Graphics.FromImage(image);
+            Brush watermarkBrush = new TextureBrush(watermarkImage);
+
+            imageGraphics.FillRectangle(watermarkBrush, new Rectangle(new Point(0, 0), image.Size));
+
+            pictureBox1.Image = image;
+
         }
 
         private void ButSave_Click(object sender, EventArgs e)
@@ -378,8 +412,35 @@ namespace lab9
                 {
                     image.Save(save.FileName);
                 }
-                    
+
             }
+        }
+
+        private void TBPathWater_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TBPathPic_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MetaDatas meta = new MetaDatas();
+            meta.classFiles = classFiles;
+            meta.ShowDialog();
         }
     }
 }

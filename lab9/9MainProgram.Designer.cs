@@ -50,7 +50,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.ButSave = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // TBPath
@@ -86,7 +89,7 @@
             // 
             this.ButDelDub.AutoSize = true;
             this.ButDelDub.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ButDelDub.Location = new System.Drawing.Point(262, 39);
+            this.ButDelDub.Location = new System.Drawing.Point(15, 68);
             this.ButDelDub.Name = "ButDelDub";
             this.ButDelDub.Size = new System.Drawing.Size(128, 23);
             this.ButDelDub.TabIndex = 3;
@@ -99,9 +102,9 @@
             this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(15, 68);
+            this.listBox1.Location = new System.Drawing.Point(15, 94);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(697, 550);
+            this.listBox1.Size = new System.Drawing.Size(697, 602);
             this.listBox1.TabIndex = 4;
             // 
             // AutoButPath
@@ -120,7 +123,7 @@
             // 
             this.ButSortDay.AutoSize = true;
             this.ButSortDay.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ButSortDay.Location = new System.Drawing.Point(482, 39);
+            this.ButSortDay.Location = new System.Drawing.Point(266, 68);
             this.ButSortDay.Name = "ButSortDay";
             this.ButSortDay.Size = new System.Drawing.Size(77, 23);
             this.ButSortDay.TabIndex = 6;
@@ -140,7 +143,7 @@
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(394, 41);
+            this.comboBox1.Location = new System.Drawing.Point(266, 42);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(85, 21);
             this.comboBox1.TabIndex = 8;
@@ -149,7 +152,7 @@
             // 
             this.ButWMM.AutoSize = true;
             this.ButWMM.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ButWMM.Location = new System.Drawing.Point(563, 39);
+            this.ButWMM.Location = new System.Drawing.Point(558, 42);
             this.ButWMM.Name = "ButWMM";
             this.ButWMM.Size = new System.Drawing.Size(149, 23);
             this.ButWMM.TabIndex = 9;
@@ -161,7 +164,7 @@
             // 
             this.ButPicWater.AutoSize = true;
             this.ButPicWater.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ButPicWater.Location = new System.Drawing.Point(8, 83);
+            this.ButPicWater.Location = new System.Drawing.Point(8, 72);
             this.ButPicWater.Name = "ButPicWater";
             this.ButPicWater.Size = new System.Drawing.Size(203, 23);
             this.ButPicWater.TabIndex = 10;
@@ -173,7 +176,7 @@
             // 
             this.ButPathAutoPic.AutoSize = true;
             this.ButPathAutoPic.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ButPathAutoPic.Location = new System.Drawing.Point(462, 11);
+            this.ButPathAutoPic.Location = new System.Drawing.Point(462, 0);
             this.ButPathAutoPic.Name = "ButPathAutoPic";
             this.ButPathAutoPic.Size = new System.Drawing.Size(26, 23);
             this.ButPathAutoPic.TabIndex = 14;
@@ -185,7 +188,7 @@
             // 
             this.ButPathPic.AutoSize = true;
             this.ButPathPic.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ButPathPic.Location = new System.Drawing.Point(430, 12);
+            this.ButPathPic.Location = new System.Drawing.Point(430, 1);
             this.ButPathPic.Name = "ButPathPic";
             this.ButPathPic.Size = new System.Drawing.Size(26, 23);
             this.ButPathPic.TabIndex = 13;
@@ -196,22 +199,25 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 18);
+            this.label2.Location = new System.Drawing.Point(10, 7);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(96, 13);
             this.label2.TabIndex = 12;
             this.label2.Text = "Путь до картинки";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // TBPathPic
             // 
-            this.TBPathPic.Location = new System.Drawing.Point(112, 15);
+            this.TBPathPic.Location = new System.Drawing.Point(112, 4);
             this.TBPathPic.Name = "TBPathPic";
             this.TBPathPic.ReadOnly = true;
             this.TBPathPic.Size = new System.Drawing.Size(312, 20);
             this.TBPathPic.TabIndex = 11;
+            this.TBPathPic.TextChanged += new System.EventHandler(this.TBPathPic_TextChanged);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.ButSave);
             this.panel1.Controls.Add(this.TBPathWater);
             this.panel1.Controls.Add(this.ButAutoPathWater);
@@ -229,17 +235,18 @@
             // 
             // TBPathWater
             // 
-            this.TBPathWater.Location = new System.Drawing.Point(112, 44);
+            this.TBPathWater.Location = new System.Drawing.Point(112, 33);
             this.TBPathWater.Name = "TBPathWater";
             this.TBPathWater.ReadOnly = true;
             this.TBPathWater.Size = new System.Drawing.Size(312, 20);
             this.TBPathWater.TabIndex = 15;
+            this.TBPathWater.TextChanged += new System.EventHandler(this.TBPathWater_TextChanged);
             // 
             // ButAutoPathWater
             // 
             this.ButAutoPathWater.AutoSize = true;
             this.ButAutoPathWater.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ButAutoPathWater.Location = new System.Drawing.Point(462, 40);
+            this.ButAutoPathWater.Location = new System.Drawing.Point(462, 29);
             this.ButAutoPathWater.Name = "ButAutoPathWater";
             this.ButAutoPathWater.Size = new System.Drawing.Size(26, 23);
             this.ButAutoPathWater.TabIndex = 18;
@@ -251,7 +258,7 @@
             // 
             this.ButPathWater.AutoSize = true;
             this.ButPathWater.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ButPathWater.Location = new System.Drawing.Point(430, 41);
+            this.ButPathWater.Location = new System.Drawing.Point(430, 30);
             this.ButPathWater.Name = "ButPathWater";
             this.ButPathWater.Size = new System.Drawing.Size(26, 23);
             this.ButPathWater.TabIndex = 17;
@@ -262,17 +269,18 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(5, 47);
+            this.label3.Location = new System.Drawing.Point(5, 36);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(101, 13);
             this.label3.TabIndex = 16;
             this.label3.Text = "Путь до Wotermark";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // ButSave
             // 
             this.ButSave.AutoSize = true;
             this.ButSave.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ButSave.Location = new System.Drawing.Point(217, 83);
+            this.ButSave.Location = new System.Drawing.Point(217, 72);
             this.ButSave.Name = "ButSave";
             this.ButSave.Size = new System.Drawing.Size(174, 23);
             this.ButSave.TabIndex = 19;
@@ -289,11 +297,33 @@
             this.comboBox2.Size = new System.Drawing.Size(245, 21);
             this.comboBox2.TabIndex = 16;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(6, 101);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(487, 589);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 20;
+            this.pictureBox1.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.AutoSize = true;
+            this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.button1.Location = new System.Drawing.Point(575, 68);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(132, 23);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "Поиск по метаданным";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // TBWater
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1218, 633);
+            this.ClientSize = new System.Drawing.Size(1218, 719);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.ButWMM);
@@ -312,6 +342,7 @@
             this.Load += new System.EventHandler(this.MainProgram_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -341,6 +372,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button ButSave;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

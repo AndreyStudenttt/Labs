@@ -53,10 +53,19 @@
       <DependentUpon>9MainProgram.cs</DependentUpon>
     </Compile>
     <Compile Include="ClassFiles.cs" />
+    <Compile Include="MetaDatas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MetaDatas.Designer.cs">
+      <DependentUpon>MetaDatas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="9MainProgram.resx">
       <DependentUpon>9MainProgram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MetaDatas.resx">
+      <DependentUpon>MetaDatas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
