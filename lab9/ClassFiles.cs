@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,11 @@ namespace lab9
         public string extension { get; set; }
         public string path { get; set; }
         public int day { get; set; }
-        public ClassFiles(long lenght, string filesnames, string path, int day, string filename_, string extension)
+        public string week { get; set; }
+        public int month { get; set; }
+        public DateTime fulldate { get; set; }
+        public byte[] bytearr { get; set; }
+        public ClassFiles(long lenght, string filesnames, string path, int day, string filename_, string extension, string week, int month, DateTime fulldate )
         {
             this.lenght = lenght;
             this.filename = filesnames;
@@ -22,6 +27,13 @@ namespace lab9
             this.day = day;
             this.filename_ = filename_;
             this.extension = extension;
+            this.week = week;
+            this.month = month;
+            this.fulldate = fulldate;
+
+            FileStream fstream = File.OpenRead(path);
+            this.bytearr = new byte[fstream.Length];
+            fstream.Read(this.bytearr, 0, bytearr.Length);
         }
         ~ClassFiles()
         {
