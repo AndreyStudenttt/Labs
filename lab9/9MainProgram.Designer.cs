@@ -60,6 +60,7 @@
             this.ButFont = new System.Windows.Forms.Button();
             this.ButColor = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.ButLogs = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -112,7 +113,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(15, 94);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(697, 602);
+            this.listBox1.Size = new System.Drawing.Size(697, 524);
             this.listBox1.TabIndex = 4;
             // 
             // AutoButPath
@@ -400,11 +401,25 @@
             this.ButColor.UseVisualStyleBackColor = true;
             this.ButColor.Click += new System.EventHandler(this.ButColor_Click);
             // 
+            // ButLogs
+            // 
+            this.ButLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ButLogs.AutoSize = true;
+            this.ButLogs.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButLogs.Location = new System.Drawing.Point(490, 624);
+            this.ButLogs.Name = "ButLogs";
+            this.ButLogs.Size = new System.Drawing.Size(222, 23);
+            this.ButLogs.TabIndex = 18;
+            this.ButLogs.Text = "Сохранение данных из консоли в logs.txt";
+            this.ButLogs.UseVisualStyleBackColor = true;
+            this.ButLogs.Click += new System.EventHandler(this.ButLogs_Click);
+            // 
             // Program9lab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1218, 719);
+            this.ClientSize = new System.Drawing.Size(1218, 654);
+            this.Controls.Add(this.ButLogs);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.panel1);
@@ -464,6 +479,7 @@
         private System.Windows.Forms.FontDialog fontDialog1;
         private System.Windows.Forms.Button ButColor;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Button ButLogs;
     }
 }
 

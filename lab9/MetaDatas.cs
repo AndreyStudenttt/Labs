@@ -19,7 +19,7 @@ namespace lab9
             for (int i = 0; i < classFiles.Count; i++)
             {
                 ListFiles.Items.Add(classFiles[i].filename);
-            }    
+            }  // Я пока что отложил это задание, тк оно слишком сложное для моего сознания
         }
 
     }

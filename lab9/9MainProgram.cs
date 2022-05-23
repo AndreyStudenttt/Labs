@@ -196,10 +196,12 @@ namespace lab9
         }
         public void DelDubByBytes()
         {
+           
             for (int i = 0; i < classFiles.Count; i++)
             {
                 byte[] bytearr = new byte[classFiles[i].bytearr.Length];
                 bytearr = classFiles[i].bytearr;
+                //classFiles.Add(classFiles[i]);
                 List<ClassFiles> found = classFiles.FindAll(file => file.bytearr == bytearr);
                 for (int j = 0; j < found.Count; j++)
                 {
@@ -212,12 +214,12 @@ namespace lab9
                         i = -1;
                     }
                 }
-
+            }
                 // Почему то переменная found всегда 1, хотя когда есть копия то дожен быть 2. Такая же лямбда исп. в 2 предыдущих методах
                 // и там почему то всё работает, проверял даже с файлами где массив битов имеет лишь 1 элемент и даже при условии что они индентичны, всё равно 
                 // found = 1. Он в листе classFiles находит только сам себя, а точную копию не видет, если бы он и себя не находил, то я бы понял в чём дело...
+
             }
-        }
         private void ButDelDub_Click(object sender, EventArgs e)
         {
             switch (comboBox2.SelectedIndex)
@@ -553,6 +555,14 @@ namespace lab9
             {
                 Image image = Image.FromFile(pathpic);
                 pictureBox1.Image = image;
+            }
+        }
+
+        private void ButLogs_Click(object sender, EventArgs e)
+        {
+            foreach ( string stroka in listBox1.Items)
+            {
+                File.AppendAllText("log.txt", stroka + "\n");
             }
         }
     }

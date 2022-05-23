@@ -20,7 +20,6 @@ namespace lab9
         public int month { get; set; }
         public DateTime fulldate { get; set; }
         public byte[] bytearr { get; set; }
-        public BitmapMetadata metadata { get; set; }
         public ClassFiles(long lenght, string filesnames, string path, int day, string filename_, string extension, string week, int month, DateTime fulldate )
         {
             this.lenght = lenght;
@@ -33,10 +32,10 @@ namespace lab9
             this.month = month;
             this.fulldate = fulldate;
 
-            FileStream fstream = File.OpenRead(path);
+            FileStream fstream = new FileStream(path, FileMode.Open);
             this.bytearr = new byte[fstream.Length];
-            fstream.Read(this.bytearr, 0, bytearr.Length);
-            
+            fstream.Read(this.bytearr, 0, this.bytearr.Length);
+
         }
         ~ClassFiles()
         {
