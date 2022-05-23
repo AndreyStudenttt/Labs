@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace lab9
 {
-    public partial class TBWater : Form
+    public partial class Program9lab : Form
     {
-        public List<ClassFiles> classFiles { get; set; }
-        
-        public TBWater()
+        public List<ClassFiles> classFiles = new List<ClassFiles>();
+
+        public Program9lab()
         {
             InitializeComponent();
             ButDelDub.Enabled = false;
@@ -39,9 +39,13 @@ namespace lab9
             ToolTip pathauto1 = new ToolTip();
             ToolTip pathauto2 = new ToolTip();
             ToolTip pathauto3 = new ToolTip();
+            ToolTip pathauto4 = new ToolTip();
+            ToolTip pathauto5 = new ToolTip();
             pathauto1.SetToolTip(AutoButPath, "Последний использованый путь");
             pathauto2.SetToolTip(ButPathAutoPic, "Последний использованый путь");
             pathauto3.SetToolTip(ButAutoPathWater, "Последний использованый путь");
+            pathauto4.SetToolTip(ButFont, "Выбор FONT(Шрифта) для Watermark");
+            pathauto5.SetToolTip(ButColor, "Выбор COLOR(Цвета шрифта) для Watermark");
         }
         string path { get; set; }
         string pathpic { get; set; }
@@ -71,8 +75,8 @@ namespace lab9
 
 
         }
-        
-        
+
+
         public void Zaponitel()
         {
             DirectoryInfo dir = new DirectoryInfo($"{path}");
@@ -199,6 +203,7 @@ namespace lab9
                 List<ClassFiles> found = classFiles.FindAll(file => file.bytearr == bytearr);
                 for (int j = 0; j < found.Count; j++)
                 {
+                    
                     if (found[j].path != classFiles[i].path)
                     {
                         listBox1.Items.Add($"Файл с названием: {classFiles[i].filename} был удален");
@@ -208,7 +213,9 @@ namespace lab9
                     }
                 }
 
-                // доделать проверку found
+                // Почему то переменная found всегда 1, хотя когда есть копия то дожен быть 2. Такая же лямбда исп. в 2 предыдущих методах
+                // и там почему то всё работает, проверял даже с файлами где массив битов имеет лишь 1 элемент и даже при условии что они индентичны, всё равно 
+                // found = 1. Он в листе classFiles находит только сам себя, а точную копию не видет, если бы он и себя не находил, то я бы понял в чём дело...
             }
         }
         private void ButDelDub_Click(object sender, EventArgs e)
@@ -311,6 +318,13 @@ namespace lab9
                     break;
             }
         }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MetaDatas meta = new MetaDatas();
+            meta.classFiles = classFiles;
+            meta.ShowDialog();
+        }
+        // Метод кнопки выбора пути до картинки
         private void ButPathPic_Click(object sender, EventArgs e)
         {
             OpenFileDialog op = new OpenFileDialog();
@@ -325,10 +339,13 @@ namespace lab9
                 File.WriteAllLines(@"save.txt", lines);
                 Image image = Image.FromFile(pathpic);
                 pictureBox1.Image = image;
-                ButPathWater.Enabled = true;
-                ButAutoPathWater.Enabled = true;
+               // ButPathWater.Enabled = true;
+               // ButAutoPathWater.Enabled = true;
+                RadioWaterPic.Enabled = true;
+                RadioWaterText.Enabled = true;
             }
         }
+        // Метод выбора картинки по сохр. пути в save.txt
         private void ButPathAutoPic_Click(object sender, EventArgs e)
         {
 
@@ -336,25 +353,13 @@ namespace lab9
             TBPathPic.Text = pathpic;
             Image image = Image.FromFile(pathpic);
             pictureBox1.Image = image;
-            ButPathWater.Enabled = true;
-            ButAutoPathWater.Enabled = true;
+          //  ButPathWater.Enabled = true;
+          //  ButAutoPathWater.Enabled = true;
+            RadioWaterPic.Enabled = true;
+            RadioWaterText.Enabled = true;
 
         }
-
-
-
-        private void ButPicWater_Click(object sender, EventArgs e)
-        {
-            using (Image image = Image.FromFile(pathpic))
-            using (Image watermarkImage = Image.FromFile(pathwater))
-            using (Graphics imageGraphics = Graphics.FromImage(image))
-            using (Brush watermarkBrush = new TextureBrush(watermarkImage))
-            {
-                imageGraphics.FillRectangle(watermarkBrush, new Rectangle(new Point(0, 0), image.Size));
-                image.Save(Path.Combine(Path.GetDirectoryName(pathpic), Path.GetFileNameWithoutExtension(pathpic) + "new.png"));
-            }
-        }
-
+        // Метод кнопки выбора пути до Watermark
         private void ButPathWater_Click(object sender, EventArgs e)
         {
             OpenFileDialog op = new OpenFileDialog();
@@ -379,7 +384,7 @@ namespace lab9
 
             }
         }
-
+        // Метод выбора Watermark по сохр. пути в save.txt
         private void ButAutoPathWater_Click(object sender, EventArgs e)
         {
             pathwater = lines[3];
@@ -396,51 +401,159 @@ namespace lab9
             pictureBox1.Image = image;
 
         }
-
+        // Метод кнопки для сохранения в опр. папку итога
         private void ButSave_Click(object sender, EventArgs e)
         {
-            using (Image image = Image.FromFile(pathpic))
-            using (Image watermarkImage = Image.FromFile(pathwater))
-            using (Graphics imageGraphics = Graphics.FromImage(image))
-            using (Brush watermarkBrush = new TextureBrush(watermarkImage))
+            SaveFileDialog save = new SaveFileDialog();
+            save.Filter = "Text documents (.png)|*.png";
+
+            if (save.ShowDialog() == DialogResult.OK)
             {
+                pictureBox1.Image.Save(save.FileName);
+            }
+
+
+        }
+        // Метод кнопки сохр. итога в папку где была картинка
+        private void ButPicWater_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Image.Save(Path.Combine(Path.GetDirectoryName(pathpic), Path.GetFileNameWithoutExtension(pathpic) + "new.png"));
+        }
+        // этот метод взял из интернета, но суть  его работы я в принципе понимаю
+        private Image DrawText(String text, Font font, Color textColor)
+        {
+            //first, create a dummy bitmap just to get a graphics object
+            Image img = new Bitmap(1, 1);
+            Graphics drawing = Graphics.FromImage(img);
+
+            //measure the string to see how big the image needs to be
+            SizeF textSize = drawing.MeasureString(text, font);
+
+            //free up the dummy image and old graphics object
+            img.Dispose();
+            drawing.Dispose();
+
+            //create a new image of the right size
+            img = new Bitmap((int)textSize.Width, (int)textSize.Height);
+
+            drawing = Graphics.FromImage(img);
+
+            //paint the background
+            drawing.Clear(Color.FromArgb(0, Color.Black));
+
+            //create a brush for the text
+            Brush textBrush = new SolidBrush(textColor);
+
+            drawing.DrawString(text, font, textBrush, 0, 0);
+
+            drawing.Save();
+
+            textBrush.Dispose();
+            drawing.Dispose();
+
+            return img;
+
+        }
+        public Font selectfont = new Font("Arial", 100);
+        public Color selectfontcolor = Color.Black;
+        private void TBWaterText_TextChanged(object sender, EventArgs e)
+        {
+            ButPicWater.Enabled = true;
+            ButSave.Enabled = true;
+           
+            if (TBWaterText.Text != string.Empty)
+            {
+                Image image = Image.FromFile(pathpic);
+                Image watermarkImage = DrawText(((TextBox)sender).Text, selectfont, selectfontcolor);
+                Graphics imageGraphics = Graphics.FromImage(image);
+                Brush watermarkBrush = new TextureBrush(watermarkImage);
+
                 imageGraphics.FillRectangle(watermarkBrush, new Rectangle(new Point(0, 0), image.Size));
-                SaveFileDialog save = new SaveFileDialog();
-                save.Filter = "Text documents (.png)|*.png";
+                pictureBox1.Image = image;
+            }
+            else 
+            {
+                Image image = Image.FromFile(pathpic);
+                pictureBox1.Image = image;
+            }
+            
+        }
 
-                if (save.ShowDialog() == DialogResult.OK)
-                {
-                    image.Save(save.FileName);
-                }
-
+        private void RadioWaterPic_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RadioWaterPic.Checked == true)
+            {
+                TBPathWater.Enabled = true;
+                ButPathWater.Enabled = true;
+                ButAutoPathWater.Enabled = true;
+                TBWaterText.Enabled = false;
+                ButFont.Enabled = false;
+                ButColor.Enabled = false;
+                Image image = Image.FromFile(pathpic);
+                TBWaterText.Text = "";
+                pictureBox1.Image = image;
+                
             }
         }
 
-        private void TBPathWater_TextChanged(object sender, EventArgs e)
+        private void RadioWaterText_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (RadioWaterText.Checked == true)
+            {
+                TBWaterText.Enabled = true;
+                ButFont.Enabled = true;
+                ButColor.Enabled = true;
+                TBPathWater.Enabled = false;
+                ButPathWater.Enabled = false;
+                ButAutoPathWater.Enabled = false;
+                TBPathWater.Text = string.Empty;
+                Image image = Image.FromFile(pathpic);
+                pictureBox1.Image = image;
+            }
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void ButFont_Click(object sender, EventArgs e)
         {
+            fontDialog1.ShowDialog();
+            selectfont = fontDialog1.Font;
+            if (TBWaterText.Text != string.Empty)
+            {
+                Image image = Image.FromFile(pathpic);
+                Image watermarkImage = DrawText(TBWaterText.Text, selectfont, selectfontcolor);
+                Graphics imageGraphics = Graphics.FromImage(image);
+                Brush watermarkBrush = new TextureBrush(watermarkImage);
 
+                imageGraphics.FillRectangle(watermarkBrush, new Rectangle(new Point(0, 0), image.Size));
+
+                pictureBox1.Image = image;
+            }
+            else
+            {
+                Image image = Image.FromFile(pathpic);
+                pictureBox1.Image = image;
+            }
         }
 
-        private void TBPathPic_TextChanged(object sender, EventArgs e)
+        private void ButColor_Click(object sender, EventArgs e)
         {
+            colorDialog1.ShowDialog();
+            selectfontcolor = colorDialog1.Color;
+            if (TBWaterText.Text != string.Empty)
+            {
+                Image image = Image.FromFile(pathpic);
+                Image watermarkImage = DrawText(TBWaterText.Text, selectfont, selectfontcolor);
+                Graphics imageGraphics = Graphics.FromImage(image);
+                Brush watermarkBrush = new TextureBrush(watermarkImage);
 
-        }
+                imageGraphics.FillRectangle(watermarkBrush, new Rectangle(new Point(0, 0), image.Size));
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            MetaDatas meta = new MetaDatas();
-            meta.classFiles = classFiles;
-            meta.ShowDialog();
+                pictureBox1.Image = image;
+            }
+            else
+            {
+                Image image = Image.FromFile(pathpic);
+                pictureBox1.Image = image;
+            }
         }
     }
 }

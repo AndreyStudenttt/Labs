@@ -1,6 +1,6 @@
 ﻿namespace lab9
 {
-    partial class TBWater
+    partial class Program9lab
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -44,14 +44,22 @@
             this.label2 = new System.Windows.Forms.Label();
             this.TBPathPic = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.TBWaterText = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.ButSave = new System.Windows.Forms.Button();
             this.TBPathWater = new System.Windows.Forms.TextBox();
             this.ButAutoPathWater = new System.Windows.Forms.Button();
             this.ButPathWater = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.ButSave = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.RadioWaterPic = new System.Windows.Forms.RadioButton();
+            this.RadioWaterText = new System.Windows.Forms.RadioButton();
+            this.label4 = new System.Windows.Forms.Label();
+            this.fontDialog1 = new System.Windows.Forms.FontDialog();
+            this.ButFont = new System.Windows.Forms.Button();
+            this.ButColor = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -164,7 +172,7 @@
             // 
             this.ButPicWater.AutoSize = true;
             this.ButPicWater.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ButPicWater.Location = new System.Drawing.Point(8, 72);
+            this.ButPicWater.Location = new System.Drawing.Point(6, 85);
             this.ButPicWater.Name = "ButPicWater";
             this.ButPicWater.Size = new System.Drawing.Size(203, 23);
             this.ButPicWater.TabIndex = 10;
@@ -204,7 +212,6 @@
             this.label2.Size = new System.Drawing.Size(96, 13);
             this.label2.TabIndex = 12;
             this.label2.Text = "Путь до картинки";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // TBPathPic
             // 
@@ -213,10 +220,15 @@
             this.TBPathPic.ReadOnly = true;
             this.TBPathPic.Size = new System.Drawing.Size(312, 20);
             this.TBPathPic.TabIndex = 11;
-            this.TBPathPic.TextChanged += new System.EventHandler(this.TBPathPic_TextChanged);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.ButColor);
+            this.panel1.Controls.Add(this.ButFont);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.RadioWaterText);
+            this.panel1.Controls.Add(this.RadioWaterPic);
+            this.panel1.Controls.Add(this.TBWaterText);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.ButSave);
             this.panel1.Controls.Add(this.TBPathWater);
@@ -233,14 +245,44 @@
             this.panel1.Size = new System.Drawing.Size(496, 612);
             this.panel1.TabIndex = 15;
             // 
+            // TBWaterText
+            // 
+            this.TBWaterText.Enabled = false;
+            this.TBWaterText.Location = new System.Drawing.Point(129, 59);
+            this.TBWaterText.Name = "TBWaterText";
+            this.TBWaterText.Size = new System.Drawing.Size(260, 20);
+            this.TBWaterText.TabIndex = 21;
+            this.TBWaterText.TextChanged += new System.EventHandler(this.TBWaterText_TextChanged);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(6, 114);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(487, 576);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 20;
+            this.pictureBox1.TabStop = false;
+            // 
+            // ButSave
+            // 
+            this.ButSave.AutoSize = true;
+            this.ButSave.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButSave.Location = new System.Drawing.Point(215, 85);
+            this.ButSave.Name = "ButSave";
+            this.ButSave.Size = new System.Drawing.Size(174, 23);
+            this.ButSave.TabIndex = 19;
+            this.ButSave.Text = "Сохранить итог в другую папку";
+            this.ButSave.UseVisualStyleBackColor = true;
+            this.ButSave.Click += new System.EventHandler(this.ButSave_Click);
+            // 
             // TBPathWater
             // 
+            this.TBPathWater.Enabled = false;
             this.TBPathWater.Location = new System.Drawing.Point(112, 33);
             this.TBPathWater.Name = "TBPathWater";
             this.TBPathWater.ReadOnly = true;
             this.TBPathWater.Size = new System.Drawing.Size(312, 20);
             this.TBPathWater.TabIndex = 15;
-            this.TBPathWater.TextChanged += new System.EventHandler(this.TBPathWater_TextChanged);
             // 
             // ButAutoPathWater
             // 
@@ -274,19 +316,6 @@
             this.label3.Size = new System.Drawing.Size(101, 13);
             this.label3.TabIndex = 16;
             this.label3.Text = "Путь до Wotermark";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // ButSave
-            // 
-            this.ButSave.AutoSize = true;
-            this.ButSave.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ButSave.Location = new System.Drawing.Point(217, 72);
-            this.ButSave.Name = "ButSave";
-            this.ButSave.Size = new System.Drawing.Size(174, 23);
-            this.ButSave.TabIndex = 19;
-            this.ButSave.Text = "Сохранить итог в другую папку";
-            this.ButSave.UseVisualStyleBackColor = true;
-            this.ButSave.Click += new System.EventHandler(this.ButSave_Click);
             // 
             // comboBox2
             // 
@@ -296,15 +325,6 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(245, 21);
             this.comboBox2.TabIndex = 16;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(6, 101);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(487, 589);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 20;
-            this.pictureBox1.TabStop = false;
             // 
             // button1
             // 
@@ -316,9 +336,71 @@
             this.button1.TabIndex = 17;
             this.button1.Text = "Поиск по метаданным";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // TBWater
+            // RadioWaterPic
+            // 
+            this.RadioWaterPic.AutoSize = true;
+            this.RadioWaterPic.Enabled = false;
+            this.RadioWaterPic.Location = new System.Drawing.Point(420, 59);
+            this.RadioWaterPic.Name = "RadioWaterPic";
+            this.RadioWaterPic.Size = new System.Drawing.Size(73, 17);
+            this.RadioWaterPic.TabIndex = 22;
+            this.RadioWaterPic.TabStop = true;
+            this.RadioWaterPic.Text = "Картинка";
+            this.RadioWaterPic.UseVisualStyleBackColor = true;
+            this.RadioWaterPic.CheckedChanged += new System.EventHandler(this.RadioWaterPic_CheckedChanged);
+            // 
+            // RadioWaterText
+            // 
+            this.RadioWaterText.AutoSize = true;
+            this.RadioWaterText.Enabled = false;
+            this.RadioWaterText.Location = new System.Drawing.Point(420, 82);
+            this.RadioWaterText.Name = "RadioWaterText";
+            this.RadioWaterText.Size = new System.Drawing.Size(55, 17);
+            this.RadioWaterText.TabIndex = 23;
+            this.RadioWaterText.TabStop = true;
+            this.RadioWaterText.Text = "Текст";
+            this.RadioWaterText.UseVisualStyleBackColor = true;
+            this.RadioWaterText.CheckedChanged += new System.EventHandler(this.RadioWaterText_CheckedChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(10, 64);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(113, 13);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "Текст для Wotermark";
+            // 
+            // ButFont
+            // 
+            this.ButFont.AutoSize = true;
+            this.ButFont.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButFont.Enabled = false;
+            this.ButFont.Location = new System.Drawing.Point(395, 59);
+            this.ButFont.Name = "ButFont";
+            this.ButFont.Size = new System.Drawing.Size(23, 23);
+            this.ButFont.TabIndex = 25;
+            this.ButFont.Text = "F";
+            this.ButFont.UseVisualStyleBackColor = true;
+            this.ButFont.Click += new System.EventHandler(this.ButFont_Click);
+            // 
+            // ButColor
+            // 
+            this.ButColor.AutoSize = true;
+            this.ButColor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButColor.Enabled = false;
+            this.ButColor.Location = new System.Drawing.Point(395, 85);
+            this.ButColor.Name = "ButColor";
+            this.ButColor.Size = new System.Drawing.Size(24, 23);
+            this.ButColor.TabIndex = 26;
+            this.ButColor.Text = "C";
+            this.ButColor.UseVisualStyleBackColor = true;
+            this.ButColor.Click += new System.EventHandler(this.ButColor_Click);
+            // 
+            // Program9lab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -337,7 +419,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TBPath);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "TBWater";
+            this.Name = "Program9lab";
             this.Text = "MainProgram";
             this.Load += new System.EventHandler(this.MainProgram_Load);
             this.panel1.ResumeLayout(false);
@@ -374,6 +456,14 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox TBWaterText;
+        private System.Windows.Forms.RadioButton RadioWaterText;
+        private System.Windows.Forms.RadioButton RadioWaterPic;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button ButFont;
+        private System.Windows.Forms.FontDialog fontDialog1;
+        private System.Windows.Forms.Button ButColor;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }
 

@@ -16,6 +16,11 @@ namespace lab9
         public MetaDatas()
         {
             InitializeComponent();
+            for (int i = 0; i < classFiles.Count; i++)
+            {
+                ListFiles.Items.Add(classFiles[i].filename);
+            }    
         }
+
     }
 }

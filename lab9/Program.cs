@@ -16,7 +16,7 @@ namespace lab9
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TBWater());
+            Application.Run(new Program9lab());
         }
     }
 }

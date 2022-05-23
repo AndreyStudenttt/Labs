@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace lab9
 {
@@ -19,6 +20,7 @@ namespace lab9
         public int month { get; set; }
         public DateTime fulldate { get; set; }
         public byte[] bytearr { get; set; }
+        public BitmapMetadata metadata { get; set; }
         public ClassFiles(long lenght, string filesnames, string path, int day, string filename_, string extension, string week, int month, DateTime fulldate )
         {
             this.lenght = lenght;
@@ -34,6 +36,7 @@ namespace lab9
             FileStream fstream = File.OpenRead(path);
             this.bytearr = new byte[fstream.Length];
             fstream.Read(this.bytearr, 0, bytearr.Length);
+            
         }
         ~ClassFiles()
         {
