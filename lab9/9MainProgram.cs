@@ -46,12 +46,21 @@ namespace lab9
             pathauto3.SetToolTip(ButAutoPathWater, "Последний использованый путь");
             pathauto4.SetToolTip(ButFont, "Выбор FONT(Шрифта) для Watermark");
             pathauto5.SetToolTip(ButColor, "Выбор COLOR(Цвета шрифта) для Watermark");
+            if (!File.Exists(@"save.txt"))
+            {
+                using (File.Create(@"save.txt")) { }
+
+                string[] startsavetxt = new string[] { "Файл для сейвов", "", "", "" };
+                File.WriteAllLines(@"save.txt", startsavetxt);
+            }
+            lines = File.ReadAllLines(@"save.txt").ToList(); // для сохр последнего пути, находится в lab9/bin/debug
         }
         string path { get; set; }
         string pathpic { get; set; }
         string pathwater { get; set; }
-        List<string> lines = File.ReadAllLines(@"save.txt").ToList(); // для сохр последнего пути, находится в lab9/bin/debug
-
+        public List<string> lines;
+        
+        
         private void ButPath_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
@@ -71,6 +80,7 @@ namespace lab9
                 ButSortDay.Enabled = true;
                 comboBox1.Enabled = true;
                 comboBox2.Enabled = true;
+                
             }
 
 
@@ -79,38 +89,49 @@ namespace lab9
 
         public void Zaponitel()
         {
-            DirectoryInfo dir = new DirectoryInfo($"{path}");
-            classFiles.Clear();
-
-            foreach (FileInfo file in dir.GetFiles("*.*", SearchOption.AllDirectories))
+            try
             {
-                // Правильная по заданию версия classFiles.Add(new ClassFiles(file.Length * 8, Path.GetFileNameWithoutExtension(file.Name), file.FullName, file.CreationTime.Day, file.Name, file.Extension,$"{file.CreationTime.DayOfWeek}",file.CreationTime.Month,file.CreationTime));
-                classFiles.Add(new ClassFiles(file.Length * 8,
-                    Path.GetFileNameWithoutExtension(file.Name),
-                    file.FullName,
-                    file.LastWriteTime.Day,
-                    file.Name,
-                    file.Extension,
-                    $"{file.LastWriteTime.DayOfWeek}",
-                    file.LastWriteTime.Month,
-                    file.LastWriteTime
-                    ));
-                // удобная для тестов
+                DirectoryInfo dir = new DirectoryInfo($"{path}");
+                classFiles.Clear();
+
+                foreach (FileInfo file in dir.GetFiles("*.*", SearchOption.AllDirectories))
+                {
+                    // Правильная по заданию версия classFiles.Add(new ClassFiles(file.Length * 8, Path.GetFileNameWithoutExtension(file.Name), file.FullName, file.CreationTime.Day, file.Name, file.Extension,$"{file.CreationTime.DayOfWeek}",file.CreationTime.Month,file.CreationTime));
+                    classFiles.Add(new ClassFiles(file.Length * 8,
+                        Path.GetFileNameWithoutExtension(file.Name),
+                        file.FullName,
+                        file.LastWriteTime.Day,
+                        file.Name,
+                        file.Extension,
+                        $"{file.LastWriteTime.DayOfWeek}",
+                        file.LastWriteTime.Month,
+                        file.LastWriteTime
+                        ));
+                    // удобная для тестов
+                }
+                TBInfo.Text = $" Количество файлов: {classFiles.Count}";
             }
-            TBInfo.Text = $" Количество файлов: {classFiles.Count}";
+            catch
+            {
+                MessageBox.Show("Выберите путь для исп. данной кнопки");
+            }
+            
         }
         private void AutoButPath_Click(object sender, EventArgs e)
         {
-
             path = lines[1];
-            TBPath.Text = path;
-            ButDelDub.Enabled = true;
-            ButSortDay.Enabled = true;
-            comboBox1.Enabled = true;
-            comboBox2.Enabled = true;
-
             Zaponitel();
-            DeleteZeroFolder(path);
+            if (classFiles.Count != 0)
+            {
+                DeleteZeroFolder(path);
+                
+                TBPath.Text = path;
+                ButDelDub.Enabled = true;
+                ButSortDay.Enabled = true;
+                comboBox1.Enabled = true;
+                comboBox2.Enabled = true;
+            }
+            
 
         }
 
@@ -304,6 +325,12 @@ namespace lab9
             this.Width = 739; // 739; 672
             this.Height = 758;
             panel1.Visible = false;
+            if (!File.Exists(@"save.txt"))
+            {
+                File.Create(@"save.txt");
+                string[] startsavetxt = new string[] { "Файл для сейвов", "C:", "C:", "C:" };
+                File.WriteAllLines(@"save.txt", startsavetxt);
+            }
         }
 
         private void ButWMM_Click(object sender, EventArgs e)
@@ -352,13 +379,19 @@ namespace lab9
         {
 
             pathpic = lines[2];
-            TBPathPic.Text = pathpic;
-            Image image = Image.FromFile(pathpic);
-            pictureBox1.Image = image;
-          //  ButPathWater.Enabled = true;
-          //  ButAutoPathWater.Enabled = true;
-            RadioWaterPic.Enabled = true;
-            RadioWaterText.Enabled = true;
+            try
+            {
+                TBPathPic.Text = pathpic;
+                Image image = Image.FromFile(pathpic);
+                pictureBox1.Image = image;
+                RadioWaterPic.Enabled = true;
+                RadioWaterText.Enabled = true;
+            }
+            catch
+            {
+                MessageBox.Show("Выберите путь для исп. данной кнопки");
+            }
+            
 
         }
         // Метод кнопки выбора пути до Watermark
@@ -390,17 +423,27 @@ namespace lab9
         private void ButAutoPathWater_Click(object sender, EventArgs e)
         {
             pathwater = lines[3];
-            TBPathWater.Text = pathwater;
-            ButPicWater.Enabled = true;
-            ButSave.Enabled = true;
+            
             Image image = Image.FromFile(pathpic);
-            Image watermarkImage = Image.FromFile(pathwater);
-            Graphics imageGraphics = Graphics.FromImage(image);
-            Brush watermarkBrush = new TextureBrush(watermarkImage);
+            try
+            {
+                Image watermarkImage = Image.FromFile(pathwater);
+                Graphics imageGraphics = Graphics.FromImage(image);
+                Brush watermarkBrush = new TextureBrush(watermarkImage);
 
-            imageGraphics.FillRectangle(watermarkBrush, new Rectangle(new Point(0, 0), image.Size));
+                imageGraphics.FillRectangle(watermarkBrush, new Rectangle(new Point(0, 0), image.Size));
 
-            pictureBox1.Image = image;
+                pictureBox1.Image = image;
+
+                TBPathWater.Text = pathwater;
+                ButPicWater.Enabled = true;
+                ButSave.Enabled = true;
+            }
+            catch
+            {
+                MessageBox.Show("Выберите путь для исп. данной кнопки");
+            }
+            
 
         }
         // Метод кнопки для сохранения в опр. папку итога

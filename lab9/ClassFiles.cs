@@ -31,10 +31,14 @@ namespace lab9
             this.week = week;
             this.month = month;
             this.fulldate = fulldate;
-
-            FileStream fstream = new FileStream(path, FileMode.Open);
-            this.bytearr = new byte[fstream.Length];
-            fstream.Read(this.bytearr, 0, this.bytearr.Length);
+            try
+            {
+                FileStream fstream = new FileStream(path, FileMode.Open);
+                this.bytearr = new byte[fstream.Length];
+                fstream.Read(this.bytearr, 0, this.bytearr.Length);
+            }
+            catch { }
+            
 
         }
         ~ClassFiles()
